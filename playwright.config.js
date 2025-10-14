@@ -12,14 +12,18 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
-export default defineConfig({
+const config = ({
   testDir: './tests',
-
   reporter: 'html',
+  timeout: 40 * 1000,
+  expect: {
+    timeout: 8 * 1000
+  },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-  browserName: 'chromium',
-  trace: 'on-first-retry',
+    browserName: 'chromium',
+    headless: true,
+    trace: 'on-first-retry',
   },
 
   /* Configure projects for major browsers */
@@ -67,4 +71,4 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
-
+module.exports = config;
